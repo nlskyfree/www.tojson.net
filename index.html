@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- when using the mode "code", it's important to specify charset utf-8 -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>在线JSON校验格式化工具 - tojson.net</title>
+    <meta name="keywords" content="在线,JSON,JSON 校验,格式化,xml转json 工具,在线工具,json视图,可视化,在线json格式化工具,json 格式化,json格式化工具,json字符串格式化,json 在线查看器,json在线,json 在线验证,json tools online" />
+    <meta name="description" content="TO JSON提供在线的JSON的可视化、校验、格式化的功能">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="resource/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="resource/jsoneditor.min.js"></script>
+    <!-- <link href="theme/darktheme.css"  rel="stylesheet" type="text/css"> -->
+    <link rel=”canonical” href="http://www.tojson.net/" />
+    <link rel="icon" href="resource/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="resource/img/favicon.ico" type="image/x-icon" />
+    <link href="resource/json.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<wrapper>
+		<header>
+            <img alt="JSON Editor Online" title="JSON Editor Online" src="resource/img/logo.png" id="logo">
+            <div id="menu">
+                <ul>
+                    <li>
+                        <a id="new" title="Open a new, empty document" onclick="onClickNew()">New</a>
+                    </li>
+                    <li>
+                        <a id="open" title="Open file">
+                            Open
+                        </a>
+                    </li>
+                    <li>
+                    <a id="save" title="Save file">
+                        Save
+                    </a>
+                    </li>
+                    <li>
+                    <a id="help" title="Open documentation (opens in a new window)" href="help.html" target="_blank">Help</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+		<content>
+			<div id="jsoneditorLeft"></div>
+			<div id="jsoneditorRight"></div>
+		</content>
+		<!-- <rooter>this is rooter</rooter> -->
+	</wrapper>
+    <script>
+        // set initial data in both editors
+        var json = {
+            'array': [1, 2, 3],
+            'boolean': true,
+            'null': null,
+            'number': 123,
+            'object': {'a': 'b', 'c': 'd'},
+            'string': 'Hello World'
+        };
+
+        // create editor 1
+        var jsoneditorLeft = document.getElementById('jsoneditorLeft');
+        var codeEditor = new JSONEditor(jsoneditorLeft, {
+            onChangeText: function (jsonString) {
+                try {
+                    treeEditor.updateText(jsonString);
+                } catch (err) {
+                    // 格式化错误直接跳过
+                }
+            }
+        }, json);
+
+        jsoneditorLeft.addEventListener("paste", function (e){
+            if (!(e.clipboardData && e.clipboardData.items) ) {
+                return;
+            }
+
+            try {
+                codeEditor.format();
+            } catch (err) {
+                // 格式化错误直接跳过
+            }
+        });
+
+        // create editor 2
+        var jsoneditorRight = document.getElementById('jsoneditorRight');
+        var treeEditor = new JSONEditor(jsoneditorRight, {
+            // 关闭
+            mainMenuBar: false,
+
+            onChangeText: function (jsonString) {
+                codeEditor.updateText(jsonString);
+                try {
+                    codeEditor.format();
+                } catch (err) {
+                    // 格式化错误直接跳过
+                }
+            }
+        }, json);
+
+        codeEditor.setMode("code");
+        treeEditor.setMode("tree");
+
+        function onClickNew() {
+            console.log("click new!")
+            codeEditor.set({});
+            treeEditor.set({});
+        }
+    </script>
+</body>
+</html>

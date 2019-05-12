@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:focus {
+    outline: none;
+}
+
+a{ 
+    text-decoration:none;
+    color: #e6e6e6;
+    width: 100%;
+    text-align: center;
+}
+
+a:hover {
+    cursor:pointer;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* 以下是菜单样式部分 */
+#logo, #menu {
+    height: 32px;
+    margin: 4px 10px;
+    border: none;
+}
+
+#menu ul li ul li a {
+    color: #737373;
+    width: 100%;
+    text-align: left;
+    border: none;
+}
+
+#menu ul li {
+    color: #e6e6e6;
+    background: 0 0;
+    border: none;
+    border-right: 1px solid #737373;
+    height: 30px;
+    width: 80px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-decoration: none;
+}
+
+#menu > ul > li:first-child {
+    border-left: 1px solid #737373;
+}
+
+
+#menu ul li ul {
+    display: none;
+    position: absolute;
+    top: 30px;
+    padding: 4px 8px 4px 8px;
+    left: 0;
+    color: #4d4d4d;
+    z-index: 999;
+    background: #f5f5f5;
+    border: none;
+    box-shadow: 5px 2px 15px rgba(128,128,128,.5);
+}
+
+#menu ul li ul li {
+    border: none;
+    width: 145px;
+}
+
+#menu ul li.active>ul, #menu ul li:hover>ul {
+    display: block;
+}
+
+#menu > ul > li:hover {
+    color: #fff;
+    background-color: #737373;
+}
+    
+/* 以下是整体布局 */
+wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    height: 40px;
+    background: #4d4d4d url(img/header_background.png);
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.4);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#menu {
+    display: flex;
+    align-items: center;
+}
+
+#menu ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#menu ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+header, rooter {
+    width: 100%;
+}
+
+content {
+    margin: 16px;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+#jsoneditorLeft {
+  width: 47%;
+  margin-right: 10px;
+  display: inline-block;
+  flex: 1;
+}
+
+#jsoneditorRight {
+  width: 47%;
+  display: inline-block;
+  flex: 1;
+}
+
+/* 以下开始覆盖JSONEditor的样式*/
+div.jsoneditor {
+    border: thin solid #9c9fab;
+}
+
+div.jsoneditor-menu {
+    background: none;
+    border-bottom: none;
+}
+
+div.jsoneditor-menu>button {
+    opacity: 1.0;
+}
