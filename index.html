@@ -35,14 +35,14 @@
                     </a>
                     </li>
                     <li>
-                    <a id="help" title="Open documentation (opens in a new window)" href="help.html" target="_blank">Help</a>
+                    <a id="download" title="download client version" onclick="onClickDownload()">Download</a>
                     </li>
                 </ul>
             </div>
         </header>
 		<content>
-			<div id="jsoneditorLeft"></div>
-			<div id="jsoneditorRight"></div>
+			<div id="jsoneditorLeft" tabindex="0"></div>
+			<div id="jsoneditorRight" tabindex="1"></div>
 		</content>
 		<!-- <rooter>this is rooter</rooter> -->
 	</wrapper>
@@ -86,6 +86,8 @@
         var treeEditor = new JSONEditor(jsoneditorRight, {
             // 关闭
             mainMenuBar: false,
+	    enableSort: false,
+	    enableTransform: false,
 
             onChangeText: function (jsonString) {
                 codeEditor.updateText(jsonString);
@@ -105,6 +107,9 @@
             codeEditor.set({});
             treeEditor.set({});
         }
+	function onClickDownload() {
+		alert("on developing...");
+	}
     </script>
 </body>
 </html>

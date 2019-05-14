@@ -146,6 +146,13 @@ content {
 /* 以下开始覆盖JSONEditor的样式*/
 div.jsoneditor {
     border: thin solid #9c9fab;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(21, 31, 39, 0.6);
+}
+
+/* 技术问题， 子类样式被覆盖了 */
+div.jsoneditor:hover{
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(82, 168, 236, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
 div.jsoneditor-menu {
@@ -153,6 +160,12 @@ div.jsoneditor-menu {
     border-bottom: none;
 }
 
-div.jsoneditor-menu>button {
+div.jsoneditor-menu>button:focus{
     opacity: 1.0;
+    outline: #737373 auto 5px;
+}
+
+/*隐藏修复按钮*/
+div.jsoneditor-menu>button.jsoneditor-repair {
+    display: none;
 }
